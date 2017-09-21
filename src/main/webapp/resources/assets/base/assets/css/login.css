@@ -1,0 +1,68 @@
+/*!
+ * Remark (http://getbootstrapadmin.com/remark)
+ * Copyright 2016 amazingsurge
+ * Licensed under the Themeforest Standard Licenses
+ */
+
+.page-login {background:#002f88 url(../images/login_bg.jpg)no-repeat center center fixed;}
+
+.page-login .panel {
+	width: 400px;
+	margin-bottom: 45px;
+	background: transparent;
+	box-shadow: none;
+	border-radius: 0
+	
+}
+
+.page-login .panel .panel-body {
+	padding: 0
+}
+
+.page-login .panel .brand-text {
+	margin-top: 8px
+}
+
+.page-login form {
+	margin: 45px 0 30px
+}
+
+
+
+.page-login form .form-material.floating+.page-login form .form-material.floating {
+	margin-top: 30px
+}
+
+.page-login form .form-material label {color: #a3afb7;font-weight: 300}
+.page-login footer a{color: #6e7584;}
+.page-login .form-group .form-control{height: 40px;}
+.btn-info{background-color: #559bfb; border-color:#559bfb ;}
+.btn-info:hover{background-color: #72adff; border-color:#72adff ;}
+.vs{font-family: "arial"; font-size: 30px; font-weight: 600; color: #00ffff;}
+.add_btn{background-color: #fff; color: #559bfb; box-shadow: 0 0 10px 1px #559bfb !important;}
+.btn-shadow{box-shadow: 0 0 10px 3px #00ffff !important;}
+.bootstrap-select-block .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100% !important; 
+}
+.bootstrap-select-block .btn-select{color: #fff;}
+.bootstrap-select .dropdown-menu{background-color: rgba(255,255,255,.6); border: solid 1px #00ffff; border-radius:2px;}
+.bootstrap-select .dropdown-menu .dropdown-menu{background-color: transparent;}
+.bootstrap-select .dropdown-menu>li>a{color: #fff;}
+.bootstrap-select.btn-group .dropdown-menu li.selected a,.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(85,116,251,.8);
+}
+ .form-group{position: relative;}
+ .form-group .close{position: absolute; bottom: 12px; right: 10px; display: inline-block; width: 20px; height: 20px; color: #559bfb; background-color: #fff; font-size: 20px; z-index: 21; cursor: pointer;}
+@media (max-width:480px) {
+	.page-login .page-content {
+		padding: 30px 10px;
+		width: 100%;
+	}
+	.page-login .panel {
+		width: auto;
+		padding: 10px
+	}
+	 
+}

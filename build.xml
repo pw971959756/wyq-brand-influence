@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="wyq-brand-influence" default="deploy" xmlns:artifact="urn:maven-artifact-ant">
+	<description>Elitemark lightweight commons API</description>
+
+	<property name="out.finalName" value="wyq-brand-influence" />
+	<property name="out.dir" value="out" />
+	<property name="out.webroot" value="${out.dir}/webapps" />
+	<property name="out.webapps" value="${out.webroot}/${out.finalName}" />
+	<property name="out.classes" value="${out.webapps}/WEB-INF/classes" />
+	<property name="out.lib" value="${out.webapps}/WEB-INF/lib" />
+	<property name="classes.dir" value="class" />
+
+	<property name="local.src" value="src/main/java" />
+	<property name="local.resources" value="src/main/resources" />
+
+	<property name="tomcat.dir" value="D:/Development/apache-tomcat-6.0.41" />
+	<property name="tomcat.out.dir" value="${tomcat.dir}/webapps/${out.finalName}/WEB-INF/lib" />
+
+	<target name="maven_info" depends="init_maven">
+		<echo>Maven build directory is ${out.dir}</echo>
+		<echo>Maven build finalName is ${out.finalName}</echo>
+		<echo>Maven build src directory is ${local.src}</echo>
+		<property name="target.jar.name" value="${out.dir}/${out.finalName}.jar" />
+		<echo>Maven build target.jar.name directory is ${target.jar.name}</echo>
+	</target>
+
+	<target name="init_maven">
+		<!--使用Maven2依赖管理 -->
+		<path id="maven-ant-tasks.classpath" path="maven-ant-tasks-2.0.9.jar" />
+		<typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant" classpathref="maven-ant-tasks.classpath" />
+
+		<!--定义Maven2变量 -->
+		<artifact:pom id="maven.project" file="pom.xml" />
+		<artifact:dependencies pathId="classpath.build" filesetid="maven.fileset.build">
+			<pom refid="maven.project" />
+		</artifact:dependencies>
+		<artifact:dependencies pathId="classpath.runtime" filesetid="maven.fileset.runtime" useScope="runtime">
+			<pom refid="maven.project" />
+		</artifact:dependencies>
+	</target>
+
+	<target name="deploy" depends="package_prepare ,compile, jar,copyLib,copyWebapp" description="do all">
+		<echo>begin to do all target to build the result package.</echo>
+	</target>
+
+	<target name="clean">
+		<delete dir="${out.dir}" />
+		<delete dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" description="description" depends="init_maven">
+		<javac srcdir="${local.src}" destdir="${classes.dir}" classpathref="classpath.build" includeAntRuntime="no" debug="true">
+			<compilerarg line="-encoding UTF-8 " />
+		</javac>
+
+		<copy todir="${classes.dir}">
+			<fileset dir="${local.src}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copyResource" depends="init_maven">
+		<copy todir="${out.classes}">
+			<fileset dir="${local.resources}">
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile, copyResource">
+		<delete file="${out.dir}/${out.finalName}.jar" failonerror="false" />
+		<jar basedir="${classes.dir}" jarfile="${out.dir}/${out.finalName}.jar">
+		</jar>
+	</target>
+
+	<target name="package_prepare" depends="maven_info">
+		<echo>clean package directory : ${out.webapps}</echo>
+		<delete dir="${out.dir}" />
+		<mkdir dir="${out.dir}" />
+		<mkdir dir="${out.webapps}" />
+		<mkdir dir="${out.lib}" />
+		<mkdir dir="${out.classes}" />
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="copyLib" depends="init_maven">
+		<copy todir="${out.lib}">
+			<fileset refid="maven.fileset.runtime" />
+			<mapper type="flatten" />
+		</copy>
+		<copy todir="${out.lib}" file="${out.dir}/${out.finalName}.jar">
+		</copy>
+
+		<copy todir="${tomcat.out.dir}">
+			<fileset dir="${out.dir}">
+				<include name="${out.finalName}.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copyWebapp" depends="init_maven">
+		<copy todir="${out.webapps}">
+			<fileset dir="src/main/webapp">
+			</fileset>
+		</copy>
+	</target>
+
+</project>

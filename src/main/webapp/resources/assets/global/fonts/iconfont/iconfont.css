@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 413270 */
+  src: url('//at.alicdn.com/t/font_413270_6935bji8cvezsemi.eot');
+  src: url('//at.alicdn.com/t/font_413270_6935bji8cvezsemi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_413270_6935bji8cvezsemi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_413270_6935bji8cvezsemi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_413270_6935bji8cvezsemi.svg#iconfont') format('svg');
+}
+
+/*@font-face {
+  font-family: 'iconfont'; 
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+  url('iconfont.woff') format('woff'),
+  url('iconfont.ttf') format('truetype'),
+  url('iconfont.svg#schooliconfont') format('svg');
+}*/
+.icon,[class^="icon-"],
+[class*="icon-"] {
+	font-family: 'iconfont' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	vertical-align: middle;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+.icon-add:before {content: "\e61c";}
+.icon-arrow-l:before,.icon-angle-left:before {content: "\e606";}
+.icon-arrow-r:before,.icon-angle-right:before {content: "\e60b";}
